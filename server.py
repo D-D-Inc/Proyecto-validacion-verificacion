@@ -1,5 +1,6 @@
 import socket
 import logging
+import sys 
 
 logging.basicConfig(filename='Logs.log', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filemode='a')
 
@@ -20,8 +21,13 @@ except:
 
 
 
-client, addr = server.accept()
-done = False
+try:
+    client, addr = server.accept()
+    done = False
+    print("Conexión exitosa")
+except:
+    print("Conexión fallida")
+    sys.exit()
 #logging.info('Servidor y cliente conectados')
 
 while not done: 
