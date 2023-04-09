@@ -14,8 +14,8 @@ except:
     sys.exit()
 done = False
 
-la="abcdefghijklmnopqrstuvwxyz:.,;-_[]"
-ua="ABCDEFGHIJKLMNOPQRSTUVWXYZ:.,;-_[]"
+la="abcdefghijklmnopqrstuvwxyz1234567890"
+ua="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
 lra=la[::-1]
 ura=ua[::-1]
 
@@ -29,8 +29,11 @@ while not done:
             converted_data+=lra[la.index(mensaje[i])]
         elif mensaje[i] in ua:
             converted_data+=ura[ua.index(mensaje[i])]
-        else:
+        elif mensaje[i] == " ":
             converted_data+=" "
+        else:
+            converted_data+= mensaje[i]
+
     client.send(converted_data.encode('utf-8'))
     logging.info('Mensaje enviado por cliente')
 
@@ -46,6 +49,8 @@ while not done:
                 restore_data+=la[lra.index(msg[i])]
             elif msg[i] in ura:
                 restore_data+=ua[ura.index(msg[i])]
+            elif msg[i] == " ":
+                    restore_data+=" "
             else:
-                restore_data+=" "
+                restore_data+= msg[i]
         print(restore_data)
