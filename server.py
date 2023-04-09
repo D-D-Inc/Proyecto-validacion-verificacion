@@ -34,6 +34,9 @@ while not done:
     converted_data = ""
     restore_data = ""
     msg = client.recv(1024).decode('utf-8')
+    if not msg:
+        socket.close()
+        break
     for i in range(0, len(msg)):
         if msg[i] in lra:
             restore_data+=la[lra.index(msg[i])]
@@ -46,12 +49,17 @@ while not done:
         
     #logging.info('Mensaje recibido por el servidor')
     
-    if msg == '/quit':
-        done = True
-        logging.info('Conexión terminada por el servidor')
+    #if msg == '/quit':
+    #    done = True
+    #    logging.info('Conexión terminada por el servidor')
     else:
         print(restore_data)
         mensaje = input("Message: ")
+        if mensaje == "/quit":
+            logging.info('Conexión terminada por el servidor')
+            break
+        if mensaje == "":
+            mensaje = " "
         for i in range(0, len(mensaje)):
             if mensaje[i] in la:
                 converted_data+=lra[la.index(mensaje[i])]
