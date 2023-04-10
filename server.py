@@ -10,6 +10,14 @@ ua="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 lra=la[::-1]
 ura=ua[::-1]
 
+def flush_input():
+    try:
+        import msvcrt
+        while msvcrt.kbhit():
+            msvcrt.getch()
+    except ImportError:
+        import sys, termios 
+        termios.tcflush(sys.stdin, termios.TCIOFLUSH)
 
 try:
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -32,6 +40,7 @@ while not done:
     converted_data = ""
     restore_data = ""
     msg = client.recv(8192).decode('utf-8')
+    flush_input()
     if not msg:
         socket.close()
         break
@@ -45,13 +54,9 @@ while not done:
         else:
             restore_data+= msg[i]
         
-    #logging.info('Mensaje recibido por el servidor')
-    
-    #if msg == '/quit':
-    #    done = True
-    #    logging.info('Conexión terminada por el servidor')
     else:
         print(restore_data)
+        flush_input()
         mensaje = input("Message: ")
         if mensaje == "/quit":
             logging.info('Conexión terminada por el servidor')

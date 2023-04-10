@@ -20,11 +20,20 @@ lra=la[::-1]
 ura=ua[::-1]
 
 
+def flush_input():
+    try:
+        import msvcrt
+        while msvcrt.kbhit():
+            msvcrt.getch()
+    except ImportError:
+        import sys, termios 
+        termios.tcflush(sys.stdin, termios.TCIOFLUSH)
+
 
 while not done: 
     converted_data = ""
     restore_data = ""
-    
+    flush_input()
     mensaje = input("Message: ")
     if mensaje == "/quit":
         logging.info('Conexión terminada por el cliente')
@@ -44,6 +53,7 @@ while not done:
     logging.info('Mensaje enviado por cliente')
 
     msg = client.recv(8192).decode('utf-8')
+    flush_input()
     #logging.info('Mensaje recibido por el cliente')
     if not msg:
         logging.info('Conexión terminada por el servidor')
