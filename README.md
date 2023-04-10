@@ -21,9 +21,11 @@ El software se divide en dos ejecutables:
 Primer se ejecuta server.py de la siguiente forma: 
 
 > python3 server.py
+
 Lo cual abrirá el servidor y lo dejará escuchando en espera de la conexión del cliente, luego ejecutamos el cliente.
 
 > python3 cliente.py
+
 Si todo está en orden el sistema notificará con un mensaje la conexión existosa entre servidor y cliente permitiendo comenzar el intercambio de mensajes.
 
 En caso de querer conectarse a desde otros computadores será necesario especificar la IP correspondiente al nuevo sistema en el código del archivo "cliente.py" o "servidor.py"
