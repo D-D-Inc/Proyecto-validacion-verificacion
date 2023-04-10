@@ -5,8 +5,8 @@ import sys
 logging.basicConfig(filename='Logs.log', encoding='utf-8', level=logging.DEBUG, format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filemode='a')
 
 
-la="abcdefghijklmnopqrstuvwxyz1234567890"
-ua="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+la="abcdefghijklmnopqrstuvwxyz"
+ua="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 lra=la[::-1]
 ura=ua[::-1]
 
@@ -14,12 +14,10 @@ ura=ua[::-1]
 try:
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind(("localhost", 9999))
-    server.listen()
+    server.listen(1)
     logging.info('Servidor escuchando')
 except:
     logging.critical('Error en el binding')
-
-
 
 try:
     client, addr = server.accept()
@@ -33,7 +31,7 @@ except:
 while not done: 
     converted_data = ""
     restore_data = ""
-    msg = client.recv(1024).decode('utf-8')
+    msg = client.recv(8192).decode('utf-8')
     if not msg:
         socket.close()
         break

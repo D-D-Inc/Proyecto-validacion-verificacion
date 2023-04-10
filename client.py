@@ -14,15 +14,17 @@ except:
     sys.exit()
 done = False
 
-la="abcdefghijklmnopqrstuvwxyz1234567890"
-ua="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+la="abcdefghijklmnopqrstuvwxyz"
+ua="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 lra=la[::-1]
 ura=ua[::-1]
+
+
 
 while not done: 
     converted_data = ""
     restore_data = ""
-
+    
     mensaje = input("Message: ")
     if mensaje == "/quit":
         logging.info('Conexión terminada por el cliente')
@@ -38,11 +40,10 @@ while not done:
             converted_data+=" "
         else:
             converted_data+= mensaje[i]
-
     client.send(converted_data.encode('utf-8'))
     logging.info('Mensaje enviado por cliente')
 
-    msg = client.recv(1024).decode('utf-8')
+    msg = client.recv(8192).decode('utf-8')
     #logging.info('Mensaje recibido por el cliente')
     if not msg:
         logging.info('Conexión terminada por el servidor')
