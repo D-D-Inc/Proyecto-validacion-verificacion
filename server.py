@@ -34,7 +34,6 @@ try:
 except:
     print("Conexión fallida")
     sys.exit()
-#logging.info('Servidor y cliente conectados')
 
 while not done: 
     converted_data = ""

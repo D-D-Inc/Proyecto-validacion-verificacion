@@ -54,13 +54,9 @@ while not done:
 
     msg = client.recv(8192).decode('utf-8')
     flush_input()
-    #logging.info('Mensaje recibido por el cliente')
     if not msg:
         logging.info('Conexión terminada por el servidor')
         break
-    #if msg == "/quit":
-    #    done = True
-    #    logging.info('Conexión terminada por el cliente')
     else:
         for i in range(0, len(msg)):
             if msg[i] in lra:
