@@ -32,4 +32,4 @@ En caso de querer conectarse a desde otros computadores será necesario especifi
 
 ### Como contribuir 
 
-En caso de querer contribuir al código basta con realizar un fork a este proyecto y levantar uan solicitud de incorporación de cambios.
+En caso de querer contribuir al código basta con realizar un fork a este proyecto y levantar una solicitud de incorporación de cambios.
